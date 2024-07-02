@@ -2,13 +2,22 @@ import time
 import pandas as pd
 import numpy as np
 
-
+# the city data that we will be using in this project
 CITY_DATA = { 'chicago'       : 'chicago.csv',
               'new york city' : 'new_york_city.csv',
               'washington'    : 'washington.csv' 
             }
 
 def input_month():
+
+    """
+    Asks user to specify the month
+
+    Returns: 
+        (str) month - name of the month to filter by, or "all" to apply no month filter
+
+    """
+
     month = None
 
     while True:
@@ -22,6 +31,15 @@ def input_month():
     return month
 
 def input_day():
+
+    """
+        Asks user to specify the day
+
+        Returns: 
+            (str) day - name of the day of week to filter by, or "all" to apply no day filter
+
+    """
+
     day = None
 
     while True:
@@ -43,7 +61,7 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+    # get user input for city (chicago, new york city, washington).
     city = None
 
     while True:
@@ -54,6 +72,7 @@ def get_filters():
             break
         print('Invalid input')
 
+    # Asks user to choose between filtring the data by month, day, both, or none of them.
     time_filter = None
 
     while True:
@@ -91,6 +110,7 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
 
+    # Convert the day into a specific number so pandas dataframe can understand it.
     days = {'sunday': 1, 'monday': 2, 'tuesday': 3,'wednesday': 4, 'thursday': 5, 'friday': 6, 'saturday': 7}
 
     df = pd.read_csv(CITY_DATA[city])
