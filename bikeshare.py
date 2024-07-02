@@ -239,6 +239,7 @@ def view_data(df):
             break
         elif check == 'yes':
             print(df.iloc[start_index:start_index+5])
+            print('-'*40)
             print('\n Would you like to view the next 5 rows of data? Enter yes or no')
             start_index += 5
             continue
