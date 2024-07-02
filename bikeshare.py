@@ -231,17 +231,28 @@ def user_stats(df, city):
     print('-'*40)
 
 def view_data(df):
-    print('\n Would you like to view 5 rows of data? Enter yes or no')
+    print('\n Would you like to view some rows of data? Enter yes or no\n')
+    check = input().lower()
     start_index = 0
+    current_index = 0
+    first_time = 0
     while True:
-        check = input().lower()
         if check == 'no':
             break
         elif check == 'yes':
-            print(df.iloc[start_index:start_index+5])
+            if not first_time:
+                try:
+                    print('How many rows would you like to see everytime you ask for data? * Using huge number of rows would not display all data\n')
+                    start_index = int(input())
+                except:
+                    print('Invalid input')
+                    continue
+                first_time = 1
+            print(df.iloc[current_index:current_index+start_index])
             print('-'*40)
-            print('\n Would you like to view the next 5 rows of data? Enter yes or no')
-            start_index += 5
+            print('\n Would you like to view the next rows of data? Enter yes or no\n')
+            check = input().lower()
+            current_index += start_index
             continue
         else:
             print('Invalid input')
